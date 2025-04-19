@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 
 export default function Home() {
@@ -53,11 +54,13 @@ export default function Home() {
       </section>
       <hr className="border-green-700 border-2 my-8 mx-8" />
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-        <div className="w-full h-[400px] md:h-auto">
-          <img 
+        <div className="w-full h-[400px] md:h-auto relative">
+          <Image 
             src="/images/glacier.jpg" 
             alt="Glacier National Park" 
-            className="w-full h-full object-cover rounded-lg"
+            fill
+            className="object-cover rounded-lg"
+            priority
           />
         </div>
         <div className="flex flex-col justify-center md:pl-12">
