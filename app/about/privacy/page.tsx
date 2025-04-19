@@ -58,6 +58,7 @@ export default function PrivacyPage() {
                 <p>The Project is hosted on Vercel, which may collect data independently of this application. Please refer to their privacy policy for more information.</p>
               </section>
 
+
               <section>
                 <h2 className="text-2xl font-semibold mb-4 text-green-700">5. Children&apos;s Privacy</h2>
                 <p>This Project is not intended for children under the age of 13. We do not knowingly collect personal information from children.</p>
