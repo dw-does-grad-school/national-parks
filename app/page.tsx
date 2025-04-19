@@ -54,7 +54,7 @@ export default function Home() {
       </section>
       <hr className="border-green-700 border-2 my-8 mx-8" />
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-        <div className="w-full h-[400px] md:h-auto relative">
+        <div className="w-full h-[300px] md:h-[500px] relative">
           <Image 
             src="/images/glacier.jpg" 
             alt="Glacier National Park" 
