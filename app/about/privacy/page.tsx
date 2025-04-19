@@ -19,8 +19,17 @@ export default function PrivacyPage() {
             <div className="space-y-8">
               <section>
                 <h2 className="text-2xl font-semibold mb-4 text-green-700">1. Information We Do Not Collect</h2>
-                <p className="mb-4">We do not collect personally identifiable information such as your name, email address, or contact details unless explicitly stated.</p>
-                <p>We also do not use tracking technologies (such as cookies or analytics scripts) to monitor your usage.</p>
+                <p className="mb-4">
+                  We do not collect any personal information from our users. We do not use cookies, tracking technologies, or any other means to collect data about your visit to our website.
+                </p>
+                <p className="mb-4">
+                  The only information we may collect is non-personal information that your browser automatically sends whenever you visit a website, such as:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 mb-4">
+                  <li><span className="font-semibold">Device Information:</span> Such as browser type, operating system, and screen resolution.</li>
+                  <li><span className="font-semibold">Usage Data:</span> General, non-identifying data like pages visited or features used, if telemetry is enabled.</li>
+                </ul>
+                <p className="italic">Note: Any such data, if collected, is anonymous and used only to improve functionality.</p>
               </section>
 
               <section>
@@ -50,7 +59,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-green-700">5. Children's Privacy</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-green-700">5. Children&apos;s Privacy</h2>
                 <p>This Project is not intended for children under the age of 13. We do not knowingly collect personal information from children.</p>
               </section>
 
