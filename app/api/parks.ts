@@ -1,46 +1,102 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
-type Park = {
+const NPS_API_URL = 'https://developer.nps.gov/api/v1/parks';
+
+interface NPSImage {
+  url: string;
+  altText: string;
+}
+
+interface NPSPark {
   id: string;
   fullName: string;
   description: string;
-  [key: string]: any;
-};
+  states: string;
+  images: NPSImage[];
+}
 
-type NpsResponse = {
-  data: Park[];
+interface NPSResponse {
   total: string;
   limit: string;
   start: string;
-};
+  data: NPSPark[];
+}
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<NpsResponse | { error: string }>
-) {
-  const { stateCode } = req.query;
-
-  if (typeof stateCode !== 'string') {
-    res.status(400).json({ error: 'Invalid or missing stateCode parameter' });
-    return;
-  }
-
-  const url = `https://developer.nps.gov/api/v1/parks?stateCode=${stateCode}&limit=10`;
-
+export async function GET(request: Request) {
   try {
-    const response = await fetch(url, {
-      headers: {
-        'X-Api-Key': process.env.NPS_API_KEY || '',
-      },
-    });
+    // Log environment variable status
+    console.log('NPS_API_KEY exists:', !!process.env.NPS_API_KEY);
+    console.log('NPS_API_KEY length:', process.env.NPS_API_KEY?.length);
 
-    if (!response.ok) {
-      throw new Error(`API error ${response.status}`);
+    if (!process.env.NPS_API_KEY) {
+      console.error('NPS_API_KEY is not set');
+      return NextResponse.json(
+        { error: 'API key not configured' },
+        { status: 500 }
+      );
     }
 
-    const data: NpsResponse = await response.json();
-    res.status(200).json(data);
-  } catch (err: any) {
-    res.status(500).json({ error: err.message || 'Internal Server Error' });
+    // Get state code from query parameters if provided
+    const { searchParams } = new URL(request.url);
+    const stateCode = searchParams.get('stateCode');
+
+    // Construct the API URL
+    let apiUrl = `${NPS_API_URL}?api_key=${process.env.NPS_API_KEY}`;
+    if (stateCode) {
+      apiUrl += `&stateCode=${stateCode}`;
+    }
+
+    console.log('Fetching from URL:', apiUrl.replace(process.env.NPS_API_KEY, 'REDACTED'));
+
+    const response = await fetch(apiUrl, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('NPS API error:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: errorText
+      });
+      throw new Error(`NPS API responded with status: ${response.status}`);
+    }
+
+    const data = await response.json() as NPSResponse;
+    
+    // Transform the data to include only the fields we need
+    const transformedData = {
+      ...data,
+      data: data.data.map((park) => ({
+        id: park.id,
+        fullName: park.fullName,
+        description: park.description,
+        states: park.states,
+        images: park.images?.map((image) => ({
+          url: image.url,
+          altText: image.altText
+        })) || []
+      }))
+    };
+
+    console.log('Received data:', {
+      total: transformedData.total,
+      limit: transformedData.limit,
+      start: transformedData.start,
+      dataLength: transformedData.data?.length
+    });
+    
+    return NextResponse.json(transformedData);
+  } catch (error) {
+    console.error('Error fetching parks:', error);
+    return NextResponse.json(
+      { 
+        error: 'Failed to fetch parks data',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
+      { status: 500 }
+    );
   }
 }
