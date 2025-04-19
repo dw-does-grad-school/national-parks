@@ -106,14 +106,24 @@ export default function ParksPage() {
     fetchParks();
   }, []);
 
-  // Filter parks based on selected state
+  // Filter and randomize parks based on selected state
   const filteredParks = useMemo(() => {
-    if (!selectedState) return allParks;
-    return allParks.filter(park => 
-      park.states.split(',').some(state => 
-        state.trim() === selectedState
-      )
-    );
+    let parks = allParks;
+    
+    // Filter by state if selected
+    if (selectedState) {
+      parks = parks.filter(park => 
+        park.states.split(',').some(state => 
+          state.trim() === selectedState
+        )
+      );
+    }
+    
+    // Randomize the array
+    const shuffled = [...parks].sort(() => Math.random() - 0.5);
+    
+    // Limit to 9 parks
+    return shuffled.slice(0, 9);
   }, [allParks, selectedState]);
 
   if (loading) {
