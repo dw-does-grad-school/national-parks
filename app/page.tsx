@@ -37,7 +37,7 @@ export default function Home() {
               <p className="text-gray-600">Discover national parks across the United States</p>
             </Card>
           </Link>
-          <Link href="/about">
+          <Link href="/hikes">
             <Card className="hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
               <h2 className="text-2xl font-semibold mb-2 text-orange-400">Hikes</h2>
               <p className="text-gray-600">Learn about the hikes that are available in the parks</p>
