@@ -17,7 +17,7 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
           <div className="text-center text-white">
-            <h1 className="text-5xl font-bold mb-4">National Parks Explorer</h1>
+            <h1 className="text-5xl font-bold mb-4">Parksy</h1>
             <p className="text-xl mb-8">Discover America&apos;s Natural Treasures</p>
             <Link 
               href="/parks"

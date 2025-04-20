@@ -1,37 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Parksy
 
-## Getting Started
+**Parksy** is a portfolio project designed to showcase UI development skills. Built over a 2–3 day stretch, it focuses on creating a pleasant and simple interface for exploring national parks and hikes using the NPS API.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Parksy was created as a lightweight, fun project meant to highlight front-end UI styling, interaction with public APIs, and the ability to develop a clean, responsive layout in a short time frame. It’s not intended for commercial use or production deployment.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✅ What Works Well
 
-## Learn More
+- **Park and hike display**: The interface clearly presents parks and hiking opportunities.
+- **Thematic UI styling**: The design reflects the outdoor/adventure theme nicely.
+- **Functionality**: For a lightweight API/UI demo, the core features perform well and without issue.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧪 What Could Be Improved
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Loading time**: Performance could be optimized. It's currently unclear whether the lag is due to the NPS API or local implementation.
+- **Authentication**: Sign-in/sign-out functionality has not yet been finalized. It may be added in the future, but is not currently necessary for this portfolio piece.
+- **Data quality**: The API data itself is not particularly well-formatted or visually appealing.
+  - This is intentional — as a newcomer to the national park scene, I chose to leave the rawness intact.
+  - Given the likely constraints of the NPS team (or possibly an intern who built the API — just a hunch!), I didn’t expect pristine data structure or presentation.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📌 Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# national-parks
+This project is a passion-driven demo rather than a polished product. It’s meant to reflect creativity, speed, and a sense of humor — not perfection or completeness.
+
+---
+
+## ⚠️ Disclaimer
+
+Parksy is **not** intended for commercial use. All data is sourced from the [National Park Service API](https://www.nps.gov/subjects/developer/index.htm), and this app is for educational and portfolio demonstration purposes only.

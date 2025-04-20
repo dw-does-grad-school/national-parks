@@ -169,26 +169,35 @@ export default function ParksPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredParks.map((park) => (
-            <Link 
+            <div 
               key={park.id}
-              href={`/parks/${park.id}`}
-              className="p-6 border rounded-lg hover:shadow-lg transition-shadow overflow-hidden"
+              className="bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all"
             >
-              {park.images && park.images[0] && (
-                <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
-                  <Image
-                    src={park.images[0].url}
-                    alt={park.images[0].altText || park.fullName}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-              )}
-              <h2 className="text-2xl font-semibold mb-2">{park.fullName}</h2>
-              <p className="text-gray-600 mb-2">{park.states}</p>
-              <p className="text-gray-700 line-clamp-3">{park.description}</p>
-            </Link>
+              <Link href={`/parks/${park.id}`}>
+                {park.images && park.images[0] && (
+                  <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
+                    <Image
+                      src={park.images[0].url}
+                      alt={park.images[0].altText || park.fullName}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
+                <h2 className="text-2xl font-semibold mb-2 text-orange-400">{park.fullName}</h2>
+                <p className="text-gray-600 font-bold mb-2">{park.states.split(',').map(state => state.trim()).join(', ')}</p>
+                <p className="text-gray-700 line-clamp-3 mb-4">{park.description}</p>
+              </Link>
+              <a 
+                href={`https://www.nps.gov/${park.id}/index.htm`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition-colors"
+              >
+                Visit Official Site
+              </a>
+            </div>
           ))}
         </div>
       )}

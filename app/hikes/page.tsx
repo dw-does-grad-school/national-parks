@@ -115,7 +115,7 @@ export default function HikesPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-green-700">Season</h3>
-                    <p>{trail.season}</p>
+                    <p>{typeof trail.season === 'string' ? trail.season.split(',').map(season => season.trim()).join(', ') : 'Not specified'}</p>
                   </div>
                   <div>
                     <h3 className="font-semibold text-green-700">Accessibility</h3>
